@@ -1,1 +1,4 @@
 pytubefix
+torch
+transformers
+accelerate
