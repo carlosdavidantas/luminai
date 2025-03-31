@@ -2,3 +2,4 @@ pytubefix
 torch
 transformers
 accelerate
+langchain-text-splitters
