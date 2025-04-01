@@ -1,7 +1,11 @@
+python-dotenv
 pytubefix
 torch
 transformers
 accelerate
 langchain-text-splitters
+langchain
 langchain-chroma
 langchain-huggingface
+langchain-community
+langgraph
