@@ -16,7 +16,8 @@ def llm_send_message(question, vector_store):
         model_kwargs={
             "max_length": 512
         },
-        huggingfacehub_api_token=os.getenv("HUGGINGFACE_API_KEY")
+        huggingfacehub_api_token=os.getenv("HUGGINGFACE_API_KEY"),
+        task="text-generation"
     )
 
     prompt = hub.pull("rlm/rag-prompt")
