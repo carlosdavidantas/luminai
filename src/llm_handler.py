@@ -22,10 +22,6 @@ def llm_send_message(question, vector_store):
 
     prompt = hub.pull("rlm/rag-prompt")
 
-    example_message = prompt.invoke(
-        {"context": "(context goes here)", "question": "(question goes here)"}
-    ).to_messages()
-
     class State(TypedDict):
         question: str
         context: List[str]
