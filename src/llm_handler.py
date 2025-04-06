@@ -43,6 +43,4 @@ def llm_send_message(question, vector_store):
 
 
     result = graph.invoke({f"question": question})
-
-    print(f'Context: {result["context"]}\n\n')
-    print(f'Answer: {result["answer"]}')
+    return result
