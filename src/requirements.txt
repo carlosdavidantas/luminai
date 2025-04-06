@@ -9,3 +9,4 @@ langchain-chroma
 langchain-huggingface
 langchain-community
 langgraph
+Flask
