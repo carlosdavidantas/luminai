@@ -10,3 +10,4 @@ langchain-huggingface
 langchain-community
 langgraph
 Flask
+flask-cors

@@ -1,4 +1,5 @@
 from flask import Flask, jsonify, request
+from flask_cors import CORS
 import re
 import json
 from youtube_audio_downloader import download_audio
@@ -10,6 +11,7 @@ from chroma_vectorization import create_vector_store, get_vector_store
 from llm_handler import llm_send_message
 
 app = Flask(__name__)
+CORS(app)
 
 YOUTUBE_REGEX = r'(https?://)?(www\.)?(youtube|youtu|youtube-nocookie)\.(com|be)/(watch\?v=|embed/|v/|.+\?v=)?([^&=%\?]{11})'
 
@@ -73,7 +75,7 @@ def send_question():
     result = llm_send_message(question, vector_store)
 
     return jsonify({
-        "response": result["answer"]
+        "reply": result["answer"]
     }), 200
 
 
