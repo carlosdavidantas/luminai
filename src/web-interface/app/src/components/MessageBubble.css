@@ -1,0 +1,26 @@
+.MessageBubble {
+    display: inline-block;
+    color: #E6ECF1;
+    padding: 10px 15px;
+    border-radius: 15px;
+    margin: 5px 0;
+    max-width: 70%; 
+    word-wrap: break-word;
+    font-size: 16px;
+    font-weight:500;
+    line-height: 1.4;
+}
+
+.UserMessage {
+    background-color: #2B4C7E;
+    align-self: flex-end;
+    border-bottom-right-radius: 3px;
+    margin: 2px;
+}
+
+.LLMMessage {
+    background-color: #1C2E44;
+    align-self: flex-start; 
+    border-bottom-left-radius: 3px;
+    margin: 2px;
+}
