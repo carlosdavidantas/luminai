@@ -9,6 +9,7 @@ from audio_transcriber import transcribe
 from text_splitter import split
 from chroma_vectorization import create_vector_store, get_vector_store
 from llm_handler import llm_send_message
+from get_folders import get_folders
 
 app = Flask(__name__)
 CORS(app)
@@ -76,6 +77,17 @@ def send_question():
 
     return jsonify({
         "reply": result["answer"]
+    }), 200
+
+@app.route("/get-titles", methods=["GET"])
+def get_titles():
+    titles = get_folders("./chroma")
+
+    if not titles:
+        return jsonify({"error": "No titles folders found"}), 404
+    
+    return jsonify({
+        "titles": titles
     }), 200
 
 
