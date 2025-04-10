@@ -1,7 +1,8 @@
 import './App.css';
 import { VscAdd } from "react-icons/vsc";
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import MessageBubble from './components/MessageBubble';
+import ChatListObject from './components/ChatListObject';
 
 function App() {
   const [showOptions, setShowOptions] = useState(false);
@@ -11,6 +12,12 @@ function App() {
   const [messages, setMessages] = useState([]);
   const [currentMessage, setCurrentMessage] = useState(""); 
   const [youtubeTitle, setYouTubeTitle] = useState("");
+  const [titles, setTitles] = useState([]);
+
+  useEffect(() => {
+    handleAddTitles();
+    console.log(titles);
+  }, []);
 
   const toggleOptions = (event) => {
     const rect = event.currentTarget.getBoundingClientRect();
@@ -53,7 +60,7 @@ function App() {
       const data = await response.json();
 
       setYouTubeTitle(data.title);
-  
+      handleAddTitles();
       alert("Youtube content loaded successfully:");
     } catch (error) {
       console.error("Request error:", error);
@@ -96,6 +103,28 @@ function App() {
     }
   };
 
+  const handleAddTitles = async () => {
+    try {
+      const response = await fetch("http://localhost:5000/get-titles", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error("An error occurred while fetching the titles.");
+      }
+
+      const data = await response.json();
+      console.log("Value from fetch: " + data.titles);
+      setTitles([]);
+      setTitles(data.titles);
+    } catch (error) {
+      console.error("Request error:", error);
+    }
+  }
+
   return (
     <div className="App">
       <div className="LeftSideBackground">
@@ -103,18 +132,31 @@ function App() {
           <h1 className="Title">Luminai</h1>
           <button className="NewChatButton">New chat</button>
         </div>
+
+        <div className="ChatTitleListBackground">
+          <ul className="ChatList">
+            {titles.map((title, index) => (
+              <ChatListObject
+                key={index}
+                title={title}
+                isSelected={youtubeTitle === title}
+                onSelect={() => setYouTubeTitle(title)}
+              />
+            ))}
+          </ul>
+        </div>  
       </div>
       
       <div className="ChatBackground">
         <div className="MessagesBackground">
-          <ul className="MessagesField">
-          {messages.map((message, index) => (
-            <MessageBubble
-              key={index}
-              text={message.text} 
-              isUser={message.isUser} 
-            />
-          ))}
+          <ul className="MessagesList">
+            {messages.map((message, index) => (
+              <MessageBubble
+                key={index}
+                text={message.text} 
+                isUser={message.isUser} 
+              />
+            ))}
           </ul>
         </div>
 
