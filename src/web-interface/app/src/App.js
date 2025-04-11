@@ -1,7 +1,7 @@
 import './App.css';
 import { VscAdd } from "react-icons/vsc";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import MessageBubble from './components/MessageBubble';
 import ChatListObject from './components/ChatListObject';
 
@@ -16,10 +16,18 @@ function App() {
   const [titles, setTitles] = useState([]);
   const [isNewChat, setIsNewChat] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
+  const messagesEndRef = useRef(null);
 
   useEffect(() => {
     handleAddTitles();
   }, []);
+
+  useEffect(() => {
+    if (messagesEndRef.current) {
+      messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [messages]);
+
 
   const toggleOptions = (event) => {
     const rect = event.currentTarget.getBoundingClientRect();
@@ -177,8 +185,9 @@ function App() {
 
             {isLoading && (<div className="LoadingIconContainer">
               <AiOutlineLoading3Quarters className="LoadingIcon" />
-            </div>
-        )}
+            </div> )}
+
+            <div ref={messagesEndRef} />
           </ul>
         </div>
 
