@@ -19,7 +19,6 @@ function App() {
 
   useEffect(() => {
     handleAddTitles();
-    console.log(titles);
   }, []);
 
   const toggleOptions = (event) => {
@@ -195,6 +194,7 @@ function App() {
               value={currentMessage}
               onChange={(e) => setCurrentMessage(e.target.value)}
               onKeyDown={handleSendMessage}
+              disabled={isLoading}
             />
           </div>
         </div>
