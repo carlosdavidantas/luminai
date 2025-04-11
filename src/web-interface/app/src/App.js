@@ -13,6 +13,7 @@ function App() {
   const [currentMessage, setCurrentMessage] = useState(""); 
   const [youtubeTitle, setYouTubeTitle] = useState("");
   const [titles, setTitles] = useState([]);
+  const [isNewChat, setIsNewChat] = useState(true);
 
   useEffect(() => {
     handleAddTitles();
@@ -61,10 +62,13 @@ function App() {
 
       setYouTubeTitle(data.title);
       handleAddTitles();
-      alert("Youtube content loaded successfully:");
+      setIsNewChat(false);
     } catch (error) {
       console.error("Request error:", error);
       alert("An error occurred while trying to load the Youtube content. Error:" + error.message);
+      setYouTubeLink("");
+      setShowYouTubeModal(true);
+      setIsNewChat(true);
     } finally {
       setShowYouTubeModal(false);
       setYouTubeLink("");
@@ -130,7 +134,14 @@ function App() {
       <div className="LeftSideBackground">
         <div className="TitleAndNewChatBackground">
           <h1 className="Title">Luminai</h1>
-          <button className="NewChatButton">New chat</button>
+          <button className="NewChatButton" onClick={() => {
+            setIsNewChat(true);
+            setMessages([]);
+            setYouTubeTitle("");
+            handleAddTitles();
+          }}>
+            New chat
+          </button>
         </div>
 
         <div className="ChatTitleListBackground">
@@ -141,6 +152,7 @@ function App() {
                 title={title}
                 isSelected={youtubeTitle === title}
                 onSelect={() => setYouTubeTitle(title)}
+                setIsNewChat={setIsNewChat}
               />
             ))}
           </ul>
@@ -154,7 +166,7 @@ function App() {
               <MessageBubble
                 key={index}
                 text={message.text} 
-                isUser={message.isUser} 
+                isUser={message.isUser}
               />
             ))}
           </ul>
@@ -162,9 +174,9 @@ function App() {
 
         <div className="TextBoxSenderFieldBackground">
           <div className="TextBoxBackground">
-            <button className="AddVideoOnChatButton" onClick={toggleOptions}>
-              <VscAdd className="AddVideoIcon"/>
-            </button>
+          {isNewChat && (<button className="AddVideoOnChatButton" onClick={toggleOptions}>
+            <VscAdd className="AddVideoIcon" />
+          </button>)}
             <input 
               type="text" 
               placeholder="Ask something here"  
