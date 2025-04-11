@@ -1,5 +1,6 @@
 import './App.css';
 import { VscAdd } from "react-icons/vsc";
+import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import { useState, useEffect } from 'react';
 import MessageBubble from './components/MessageBubble';
 import ChatListObject from './components/ChatListObject';
@@ -14,6 +15,7 @@ function App() {
   const [youtubeTitle, setYouTubeTitle] = useState("");
   const [titles, setTitles] = useState([]);
   const [isNewChat, setIsNewChat] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     handleAddTitles();
@@ -44,7 +46,9 @@ function App() {
       alert("Please, insert a link.");
       return;
     }
-  
+    setShowYouTubeModal(false);
+    setIsLoading(true);
+
     try {
       const response = await fetch("http://localhost:5000/load-content-from-youtube", {
         method: "POST",
@@ -57,7 +61,7 @@ function App() {
       if (!response.ok) {
         throw new Error("An error occurred while loading the Youtube content.");
       }
-  
+      
       const data = await response.json();
 
       setYouTubeTitle(data.title);
@@ -66,10 +70,12 @@ function App() {
     } catch (error) {
       console.error("Request error:", error);
       alert("An error occurred while trying to load the Youtube content. Error:" + error.message);
+      setIsLoading(false);
       setYouTubeLink("");
       setShowYouTubeModal(true);
       setIsNewChat(true);
     } finally {
+      setIsLoading(false);
       setShowYouTubeModal(false);
       setYouTubeLink("");
     }
@@ -169,6 +175,11 @@ function App() {
                 isUser={message.isUser}
               />
             ))}
+
+            {isLoading && (<div className="LoadingIconContainer">
+              <AiOutlineLoading3Quarters className="LoadingIcon" />
+            </div>
+        )}
           </ul>
         </div>
 
