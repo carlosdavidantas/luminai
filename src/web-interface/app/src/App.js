@@ -1,11 +1,13 @@
-import './App.css';
+import './styles/App.css';
 import { VscAdd } from "react-icons/vsc";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import { useState, useEffect, useRef } from 'react';
-import MessageBubble from './components/MessageBubble';
-import ChatListObject from './components/ChatListObject';
+import { handleLeftSideChatTitles } from './utils/appScrips.js';
+import MessageBubble from './components/UserOrAIMessageBubble/UserOrAIMessageBubble.js';
+import ChatListObject from './components/LeftSideTitleChatButton/LeftSideTitleChatButton.js';
 
 function App() {
+  // Hooks
   const [showOptions, setShowOptions] = useState(false);
   const [menuPosition, setMenuPosition] = useState({ top: 0, left: 0 });
   const [showYouTubeModal, setShowYouTubeModal] = useState(false);
@@ -19,7 +21,8 @@ function App() {
   const messagesEndRef = useRef(null);
 
   useEffect(() => {
-    handleAddTitles();
+    console.log("Updating titles");
+    handleLeftSideChatTitles(setTitles);
   }, []);
 
   useEffect(() => {
@@ -29,7 +32,8 @@ function App() {
   }, [messages]);
 
 
-  const toggleOptions = (event) => {
+  // Functions 
+  const toggleMidiaOptions = (event) => {
     const rect = event.currentTarget.getBoundingClientRect();
     setMenuPosition({ 
       top: rect.top + window.scrollY - 100,
@@ -72,7 +76,7 @@ function App() {
       const data = await response.json();
 
       setYouTubeTitle(data.title);
-      handleAddTitles();
+      handleLeftSideChatTitles(setTitles);
       setIsNewChat(false);
     } catch (error) {
       console.error("Request error:", error);
@@ -120,28 +124,8 @@ function App() {
     }
   };
 
-  const handleAddTitles = async () => {
-    try {
-      const response = await fetch("http://localhost:5000/get-titles", {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
 
-      if (!response.ok) {
-        throw new Error("An error occurred while fetching the titles.");
-      }
-
-      const data = await response.json();
-      console.log("Value from fetch: " + data.titles);
-      setTitles([]);
-      setTitles(data.titles);
-    } catch (error) {
-      console.error("Request error:", error);
-    }
-  }
-
+  // Web page code
   return (
     <div className="App">
       <div className="LeftSideBackground">
@@ -151,7 +135,7 @@ function App() {
             setIsNewChat(true);
             setMessages([]);
             setYouTubeTitle("");
-            handleAddTitles();
+            handleLeftSideChatTitles(setTitles);
           }}>
             New chat
           </button>
@@ -193,8 +177,8 @@ function App() {
 
         <div className="TextBoxSenderFieldBackground">
           <div className="TextBoxBackground">
-          {isNewChat && (<button className="AddVideoOnChatButton" onClick={toggleOptions}>
-            <VscAdd className="AddVideoIcon" />
+          {isNewChat && (<button className="AddMidiaButton" onClick={toggleMidiaOptions}>
+            <VscAdd className="AddMidiaIcon" />
           </button>)}
             <input 
               type="text" 
@@ -209,6 +193,7 @@ function App() {
         </div>
       </div>
 
+      {/* Context menu for adding media */}
       {showOptions && (
         <div 
           className="ContextMenu" 
@@ -222,6 +207,7 @@ function App() {
         </div>
       )}
 
+      {/* Modal for adding YouTube link. This modal will appear when the user clicks on "Add Youtube Link" */}
       {showYouTubeModal && (
         <div className="ModalOverlay">
           <div className="ModalContent">

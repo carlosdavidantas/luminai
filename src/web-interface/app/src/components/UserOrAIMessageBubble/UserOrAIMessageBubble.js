@@ -1,5 +1,5 @@
 import React from "react";
-import "./MessageBubble.css";
+import "./UserOrAIMessageBubble.css";
 
 function MessageBubble({ text, isUser }) {
     return (
