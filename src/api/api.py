@@ -76,7 +76,7 @@ def send_question():
     result = llm_send_message(question, vector_store)
 
     return jsonify({
-        "reply": result["answer"]
+        "reply": result["answer"].content
     }), 200
 
 @app.route("/get-titles", methods=["GET"])

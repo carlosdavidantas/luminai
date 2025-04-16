@@ -1,23 +1,20 @@
-from langchain_huggingface import HuggingFaceEndpoint
 from langchain import hub
 from dotenv import load_dotenv
 import os
 from typing_extensions import List, TypedDict
 from langgraph.graph import START, StateGraph
+from langchain_google_genai import ChatGoogleGenerativeAI
 
 load_dotenv()
 
-huggingface_repository_id = "mistralai/Mistral-7B-Instruct-v0.3"
-
 def llm_send_message(question, vector_store):
-    llm = HuggingFaceEndpoint(
-        repo_id= huggingface_repository_id,
+    llm = ChatGoogleGenerativeAI(
+        model="gemini-2.0-flash-001",
         temperature=0.5,
-        model_kwargs={
-            "max_length": 512
-        },
-        huggingfacehub_api_token=os.getenv("HUGGINGFACE_API_KEY"),
-        task="text-generation"
+        max_tokens=None,
+        timeout=None,
+        max_retries=2,
+        api_key=os.getenv("GOOGLE_API_KEY"),
     )
 
     prompt = hub.pull("rlm/rag-prompt")
