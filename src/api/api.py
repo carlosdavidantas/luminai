@@ -8,7 +8,7 @@ from youtube_audio_downloader import download_audio
 from audio_transcriber import transcribe
 from text_splitter import split
 from chroma_vectorization import create_vector_store, get_vector_store
-from llm_handler import llm_send_message
+from llm_message_sender import llm_send_message
 from get_folders import get_folders
 
 app = Flask(__name__)
@@ -73,7 +73,7 @@ def send_question():
     title = content["title"]
     vector_store = get_vector_store(title)
 
-    result = llm_send_message(question, vector_store)
+    result = llm_send_message(question, vector_store, title)
 
     return jsonify({
         "reply": result["answer"].content
