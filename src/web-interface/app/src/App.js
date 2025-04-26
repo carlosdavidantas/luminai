@@ -1,10 +1,10 @@
 import './styles/App.css';
-import { VscAdd } from "react-icons/vsc";
-import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import { useState, useEffect, useRef } from 'react';
 import { handleLeftSideChatTitles } from './utils/appScrips.js';
-import MessageBubble from './components/UserOrAIMessageBubble/UserOrAIMessageBubble.js';
-import ChatListObject from './components/LeftSideTitleChatButton/LeftSideTitleChatButton.js';
+import SideBar from "./components/SideBar/SideBar.js";
+import ChatWindow from "./components/ChatWindow/ChatWindow.js";
+import ShowMediaOptionsPopup from "./components/ShowMediaOptionsPopup/ShowMediaOptionsPopup.js";
+import ShowYoutubeModalPopup from "./components/ShowYoutubeModalPopup/ShowYoutubeModalPopup.js";
 
 function App() {
   // Hooks
@@ -20,8 +20,8 @@ function App() {
   const [isLoading, setIsLoading] = useState(false);
   const messagesEndRef = useRef(null);
 
+  // Effects
   useEffect(() => {
-    console.log("Updating titles");
     handleLeftSideChatTitles(setTitles);
   }, []);
 
@@ -34,6 +34,7 @@ function App() {
 
   // Functions 
   const toggleMidiaOptions = (event) => {
+    console.log("Toggling media options");
     const rect = event.currentTarget.getBoundingClientRect();
     setMenuPosition({ 
       top: rect.top + window.scrollY - 100,
@@ -128,103 +129,43 @@ function App() {
   // Web page code
   return (
     <div className="App">
-      <div className="LeftSideBackground">
-        <div className="TitleAndNewChatBackground">
-          <h1 className="Title">Luminai</h1>
-          <button className="NewChatButton" onClick={() => {
-            setIsNewChat(true);
-            setMessages([]);
-            setYouTubeTitle("");
-            handleLeftSideChatTitles(setTitles);
-          }}>
-            New chat
-          </button>
-        </div>
+      <SideBar 
+        setIsNewChat = {setIsNewChat}
+        setMessages = {setMessages}
+        setYouTubeTitle = {setYouTubeTitle}
+        handleLeftSideChatTitles = {handleLeftSideChatTitles}
+        youtubeTitle = {youtubeTitle}
+        titles = {titles}
+        setTitles = {setTitles}
+      />
+      <ChatWindow 
+          messages={messages}
+          isLoading={isLoading}
+          messagesEndRef={messagesEndRef}
+          isNewChat={isNewChat}
+          toggleMidiaOptions={toggleMidiaOptions}
+          currentMessage={currentMessage}
+          setCurrentMessage={setCurrentMessage}
+          handleSendMessage={handleSendMessage}
+      />
 
-        <div className="ChatTitleListBackground">
-          <ul className="ChatList">
-            {titles.map((title, index) => (
-              <ChatListObject
-                key={index}
-                title={title}
-                isSelected={youtubeTitle === title}
-                onSelect={() => setYouTubeTitle(title)}
-                setIsNewChat={setIsNewChat}
-              />
-            ))}
-          </ul>
-        </div>  
-      </div>
-      
-      <div className="ChatBackground">
-        <div className="MessagesBackground">
-          <ul className="MessagesList">
-            {messages.map((message, index) => (
-              <MessageBubble
-                key={index}
-                text={message.text} 
-                isUser={message.isUser}
-              />
-            ))}
-
-            {isLoading && (<div className="LoadingIconContainer">
-              <AiOutlineLoading3Quarters className="LoadingIcon" />
-            </div> )}
-
-            <div ref={messagesEndRef} />
-          </ul>
-        </div>
-
-        <div className="TextBoxSenderFieldBackground">
-          <div className="TextBoxBackground">
-          {isNewChat && (<button className="AddMidiaButton" onClick={toggleMidiaOptions}>
-            <VscAdd className="AddMidiaIcon" />
-          </button>)}
-            <input 
-              type="text" 
-              placeholder="Ask something here"  
-              className="TextBoxInput"
-              value={currentMessage}
-              onChange={(e) => setCurrentMessage(e.target.value)}
-              onKeyDown={handleSendMessage}
-              disabled={isLoading}
-            />
-          </div>
-        </div>
-      </div>
-
-      {/* Context menu for adding media */}
+      {/* Context menu to choose media */}
       {showOptions && (
-        <div 
-          className="ContextMenu" 
-          style={{ top: menuPosition.top, left: menuPosition.left }}
-        >
-          <button onClick={handleAddYouTubeLink}>
-            Add Youtube Link
-          </button>
-          
-          <button onClick={() => setShowOptions(false)}>Close</button>
-        </div>
+        <ShowMediaOptionsPopup
+          menuPosition={menuPosition}
+          handleAddYouTubeLink={handleAddYouTubeLink}
+          setShowOptions={setShowOptions}
+        />
       )}
 
-      {/* Modal for adding YouTube link. This modal will appear when the user clicks on "Add Youtube Link" */}
+      {/* Modal popup for adding YouTube link. This modal will appear when the user clicks on "Add Youtube Link" */}
       {showYouTubeModal && (
-        <div className="ModalOverlay">
-          <div className="ModalContent">
-            <h3>Add Youtube Link</h3>
-            <input 
-              type="text" 
-              className="YouTubeInput" 
-              placeholder="Insert the YouTube link here" 
-              value={youtubeLink}
-              onChange={(e) => setYouTubeLink(e.target.value)}
-            />
-            <div className="ModalButtons">
-              <button onClick={handleSaveYouTubeLink}>Save</button>
-              <button onClick={handleCloseYouTubeModal}>Close</button>
-            </div>
-          </div>
-        </div>
+        <ShowYoutubeModalPopup
+          youtubeLink={youtubeLink}
+          setYouTubeLink={setYouTubeLink}
+          handleSaveYouTubeLink={handleSaveYouTubeLink}
+          handleCloseYouTubeModal={handleCloseYouTubeModal}
+        />
       )}
     </div>
   );
