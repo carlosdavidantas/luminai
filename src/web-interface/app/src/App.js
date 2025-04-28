@@ -1,10 +1,11 @@
 import './styles/App.css';
 import { useState, useEffect, useRef } from 'react';
-import { handleLeftSideChatTitles } from './utils/appScrips.js';
+import { handleLeftSideChatTitles, handleChatHistory } from './utils/appScrips.js';
 import SideBar from "./components/SideBar/SideBar.js";
 import ChatWindow from "./components/ChatWindow/ChatWindow.js";
 import ShowMediaOptionsPopup from "./components/ShowMediaOptionsPopup/ShowMediaOptionsPopup.js";
 import ShowYoutubeModalPopup from "./components/ShowYoutubeModalPopup/ShowYoutubeModalPopup.js";
+import MessageBubble from './components/UserOrAIMessageBubble/UserOrAIMessageBubble.js';
 
 function App() {
   // Hooks
@@ -16,10 +17,11 @@ function App() {
   const [currentMessage, setCurrentMessage] = useState(""); 
   const [youtubeTitle, setYouTubeTitle] = useState("");
   const [titles, setTitles] = useState([]);
+  const [chat_history, setChatHistory] = useState([]);
   const [isNewChat, setIsNewChat] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
   const messagesEndRef = useRef(null);
-
+  
   // Effects
   useEffect(() => {
     handleLeftSideChatTitles(setTitles);
@@ -31,10 +33,27 @@ function App() {
     }
   }, [messages]);
 
+  useEffect(() => {
+    handleChatHistory(setChatHistory, youtubeTitle);
+    setMessages([]);
+  },[youtubeTitle]);
+
+  useEffect(() => {
+    const messagesHistory = [];
+    chat_history.forEach(element => {
+      const content = element.data.content;
+      const userType = element.type === "human" ? true : false;
+      const newMessage = { text: content, isUser: userType };
+      messagesHistory.push(newMessage);
+    });
+
+    setMessages(messagesHistory);
+  },[chat_history]);
+
+
 
   // Functions 
   const toggleMidiaOptions = (event) => {
-    console.log("Toggling media options");
     const rect = event.currentTarget.getBoundingClientRect();
     setMenuPosition({ 
       top: rect.top + window.scrollY - 100,

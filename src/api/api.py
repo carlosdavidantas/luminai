@@ -2,14 +2,15 @@ from flask import Flask, jsonify, request
 from flask_cors import CORS
 import re
 import json
+import os
+
 from youtube_audio_downloader import download_audio
-
-
 from audio_transcriber import transcribe
 from text_splitter import split
 from chroma_vectorization import create_vector_store, get_vector_store
 from llm_message_sender import llm_send_message
 from get_folders import get_folders
+from read_json_file import read_json_file
 
 app = Flask(__name__)
 CORS(app)
@@ -89,6 +90,27 @@ def get_titles():
     return jsonify({
         "titles": titles
     }), 200
+
+@app.route("/get-chat-history", methods=["GET"])
+def get_chat_history():
+    title = request.args.get("title") 
+    print(f"Received Title: {title}")
+    
+    if not title:
+        return jsonify({"error": "Invalid request format. Use ?title=chat_title"}), 400
+            
+    
+
+    chat_history_path = f"./messages_history/{title}.json"
+    if(not os.path.exists(chat_history_path)):
+        return jsonify([]), 200
+    
+    chat_history = read_json_file(chat_history_path)
+
+    return jsonify({
+        "chat-history": chat_history
+    }), 200
+
 
 
 if __name__ == "__main__":

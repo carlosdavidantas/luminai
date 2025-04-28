@@ -1,20 +1,50 @@
-export const handleLeftSideChatTitles = async (setTitles) => {
+export const getOrPostData = async (route, method = "GET", body = null) => {
     try {
-        const response = await fetch("http://localhost:5000/get-titles", {
-            method: "GET",
+        let url = `http://localhost:5000/${route}`;
+        const options = {
+            method,
             headers: {
                 "Content-Type": "application/json",
             },
-        });
+        };
+
+        if (method === "GET" && body) {
+            const queryParams = new URLSearchParams(body).toString();
+            url += `?${queryParams}`;
+        } else if (body) {
+            options.body = JSON.stringify(body);
+        }
+
+        const response = await fetch(url, options);
 
         if (!response.ok) {
-            throw new Error("An error occurred while fetching the titles.");
+            throw new Error("An error occurred while fetching the data.");
         }
 
         const data = await response.json();
-        setTitles([]);
-        setTitles(data.titles);
+        return data;
     } catch (error) {
         console.error("Request error:", error);
     }
+};
+
+export const handleLeftSideChatTitles = async (setTitles) => {
+    const data = await getOrPostData("get-titles");
+    setTitles(data.titles);
+}
+
+export const handleChatHistory = async (setChatHistory, youtubeTitle) => {
+    if(youtubeTitle.trim() === "" || youtubeTitle === undefined || youtubeTitle === null) {
+        return;
+    }
+    try {
+        const data = await getOrPostData("get-chat-history", "GET", { title: youtubeTitle });
+        if (data.length !== 0) {
+            setChatHistory(data["chat-history"]);
+        }
+
+    } catch (error) {
+        console.error("Error fetching chat history:", error);
+    }
+
 }
