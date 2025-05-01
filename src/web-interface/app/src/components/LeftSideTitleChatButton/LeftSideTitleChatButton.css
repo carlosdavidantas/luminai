@@ -1,4 +1,3 @@
-
 .ChatListObject {
     width: 100%;
     height: 5%;
@@ -10,6 +9,9 @@
 .TitleButton {
     width: 100%;
     height: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
     background-color: transparent;
     border: none;
     font-size: small;
@@ -17,10 +19,37 @@
 }   
 
 .TitleButton:hover {
-    color: #c25100;
     border-radius: 10px;
+    background-color: #0c1629;
 }
 
 .TitleButton.clicked {
-    color: #c25100;
+    border-radius: 10px;
+    background-color: #101f35;
+}
+
+.TitleButton span {
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    border-right: 2px solid #f9f9f9;
+    animation: typingEffect 2s steps(30, end), blink 0.5s step-end infinite alternate;
+}
+
+@keyframes typingEffect {
+    from {
+        width: 0;
+    }
+    to {
+        width: 100%;
+    }
+}
+
+@keyframes blink {
+    from {
+        border-color: transparent;
+    }
+    to {
+        border-color: #f9f9f9;
+    }
 }

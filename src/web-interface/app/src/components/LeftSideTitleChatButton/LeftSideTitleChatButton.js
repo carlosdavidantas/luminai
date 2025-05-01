@@ -1,7 +1,30 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./LeftSideTitleChatButton.css";
 
 function ChatListObject({ title, isSelected, onSelect, setIsNewChat }) {
+    const [visibleText, setVisibleText] = useState("");
+
+    useEffect(() => {
+        if(isSelected) {
+            let currentIndex = 0;
+
+            const interval = setInterval(() => {
+                if (currentIndex <= title.length) {
+                    setVisibleText(title.substring(0, currentIndex));
+                    currentIndex++;
+                } else {
+                    clearInterval(interval);
+                }
+            }, 50);
+    
+            
+            return () => clearInterval(interval);
+        } else {
+            setVisibleText(title);
+        }
+
+    }, [title]);
+
     return (
         <li className="ChatListObject">
             <button
@@ -11,7 +34,7 @@ function ChatListObject({ title, isSelected, onSelect, setIsNewChat }) {
                     setIsNewChat(false);
                 }}
             >
-                {title}
+                {visibleText}
             </button>
         </li>
     );

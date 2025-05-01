@@ -59,6 +59,10 @@
     list-style: none;
     overflow-y: scroll;
     overflow-x: hidden;
-    scrollbar-width: thin;
+    scrollbar-width: none;
     scrollbar-color: #0E1A2B transparent;
+  }
+
+  .ChatList::-webkit-scrollbar {
+    display: none;
   }
