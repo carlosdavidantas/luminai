@@ -27,7 +27,13 @@ def transcribe(audio_path):
         device=device,
         return_timestamps=True
     )
-    print("Started transcribing at: " + str(time.perf_counter()))
+    start_time = time.perf_counter()
+    print("Transcribing audio...")
+
     result = pipe(audio_path)
-    print("Finished transcribing at: " + str(time.perf_counter()))
+    
+    finish_time = time.perf_counter()
+    time_taken = finish_time - start_time
+    print(f"Time taken for transcription: {time_taken:.2f} seconds")
+    
     return result["text"]

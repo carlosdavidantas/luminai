@@ -1,8 +1,7 @@
 from langchain.prompts import PromptTemplate
-from langchain.prompts.chat import HumanMessagePromptTemplate
-from langchain.prompts.chat import ChatPromptTemplate
+from langchain.prompts.chat import ChatPromptTemplate, HumanMessagePromptTemplate
 from langgraph.graph import START, StateGraph
-from langchain_google_genai import ChatGoogleGenerativeAI
+from llm_model import get_model
 from langchain_community.chat_message_histories import FileChatMessageHistory
 from typing_extensions import List, TypedDict
 from dotenv import load_dotenv
@@ -17,14 +16,7 @@ os.environ["LANGCHAIN_API_KEY"] = os.getenv("LANGCHAIN_API_KEY")
 MESSAGES_HISTORY_FOLDER_NAME = "messages_history"
 
 def llm_send_message(question, vector_store, title):
-    llm = ChatGoogleGenerativeAI(
-        model="gemini-2.0-flash-001",
-        temperature=0.5,
-        max_tokens=None,
-        timeout=None,
-        max_retries=2,
-        api_key=os.getenv("GOOGLE_API_KEY"),
-    )
+    llm = get_model()
 
     f_create(f"./{MESSAGES_HISTORY_FOLDER_NAME}")
 

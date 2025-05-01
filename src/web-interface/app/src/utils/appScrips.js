@@ -18,18 +18,22 @@ export const getOrPostData = async (route, method = "GET", body = null) => {
         const response = await fetch(url, options);
 
         if (!response.ok) {
-            throw new Error("An error occurred while fetching the data.");
+            throw new Error("The response was not ok. Status: " + response.status);
         }
 
         const data = await response.json();
         return data;
     } catch (error) {
         console.error("Request error:", error);
+        return [];
     }
 };
 
 export const handleLeftSideChatTitles = async (setTitles) => {
     const data = await getOrPostData("get-titles");
+    if (data.length === 0) {
+        return;
+    }
     setTitles(data.titles);
 }
 

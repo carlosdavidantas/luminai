@@ -7,10 +7,13 @@ import os
 from youtube_audio_downloader import download_audio
 from audio_transcriber import transcribe
 from text_splitter import split
-from chroma_vectorization import create_vector_store, get_vector_store
+from chroma_vectorizator import create_vector_store, get_vector_store
 from llm_message_sender import llm_send_message
-from get_folders import get_folders
-from read_json_file import read_json_file
+from folder_getter import get_folder
+from json_file_reader import read_json_file
+from llm_title_generator import title_generate
+from folder_renamer import change_folder_name
+from folder_deleter import delete_folder
 
 app = Flask(__name__)
 CORS(app)
@@ -46,10 +49,16 @@ def download_and_load_content_from_youtube():
             
             audio_transcription = transcribe(path)
             splitted_texts = split(audio_transcription)
-            create_vector_store(splitted_texts, f"{title}")
+
+            new_title = title_generate(splitted_texts, title)
+            stripped_title = new_title.strip()
+
+            create_vector_store(splitted_texts, stripped_title)
+
+            delete_folder("./cache")
 
             return jsonify({
-                "title": title,
+                "title": stripped_title,
                 "status": "Video successfully downloaded!"
             }), 200
         except Exception as e:
@@ -82,10 +91,10 @@ def send_question():
 
 @app.route("/get-titles", methods=["GET"])
 def get_titles():
-    titles = get_folders("./chroma")
+    titles = get_folder("./chroma")
 
     if not titles:
-        return jsonify({"error": "No titles folders found"}), 404
+        return jsonify({"status": "No titles found"}), 201
     
     return jsonify({
         "titles": titles
