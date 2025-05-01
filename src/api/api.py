@@ -3,17 +3,20 @@ from flask_cors import CORS
 import re
 import json
 import os
+import sys
+ROOT_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+if ROOT_DIR not in sys.path:
+    sys.path.append(ROOT_DIR)
 
-from youtube_audio_downloader import download_audio
-from audio_transcriber import transcribe
-from text_splitter import split
-from chroma_vectorizator import create_vector_store, get_vector_store
-from llm_message_sender import llm_send_message
-from folder_getter import get_folder
-from json_file_reader import read_json_file
-from llm_title_generator import title_generate
-from folder_renamer import change_folder_name
-from folder_deleter import delete_folder
+from media_handlers.audio.youtube_audio_downloader import download_audio
+from media_handlers.audio.audio_transcriber import transcribe
+from media_handlers.text.text_splitter import split
+from embedding_handlers.chroma_vectorizator import create_vector_store, get_vector_store
+from llm_handlers.llm_message_sender import llm_send_message
+from folder_manipulators.folder_getter import get_folder
+from media_handlers.text.json_file_reader import read_json_file
+from llm_handlers.llm_title_generator import title_generate
+from folder_manipulators.folder_deleter import delete_folder
 
 app = Flask(__name__)
 CORS(app)

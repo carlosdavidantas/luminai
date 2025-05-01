@@ -1,12 +1,12 @@
 from langchain.prompts import PromptTemplate
 from langchain.prompts.chat import ChatPromptTemplate, HumanMessagePromptTemplate
 from langgraph.graph import START, StateGraph
-from llm_model import get_model
 from langchain_community.chat_message_histories import FileChatMessageHistory
 from typing_extensions import List, TypedDict
 from dotenv import load_dotenv
 import os
-from folder_creator import f_create
+from llm_handlers.llm_model import get_model
+from folder_manipulators.folder_creator import f_create
 
 
 

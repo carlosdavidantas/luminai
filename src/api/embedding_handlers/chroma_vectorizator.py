@@ -1,5 +1,5 @@
 from langchain_chroma import Chroma
-from embedding_model import get_embedding_model
+from embedding_handlers.embedding_model import get_embedding_model
 import os
 
 vector_store_path = "./chroma/"

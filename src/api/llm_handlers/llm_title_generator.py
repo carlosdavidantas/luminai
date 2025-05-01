@@ -1,4 +1,4 @@
-from llm_model import get_model
+from llm_handlers.llm_model import get_model
 from langchain.prompts import PromptTemplate
 from langchain.prompts.chat import ChatPromptTemplate, HumanMessagePromptTemplate
 from typing_extensions import List, TypedDict

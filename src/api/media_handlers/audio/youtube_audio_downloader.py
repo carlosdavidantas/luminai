@@ -1,4 +1,4 @@
-from folder_creator import f_create
+from folder_manipulators.folder_creator import f_create
 from pytubefix import YouTube
 import os
 
