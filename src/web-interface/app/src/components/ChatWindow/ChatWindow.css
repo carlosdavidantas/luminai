@@ -26,9 +26,9 @@
     flex-direction: column;
     gap: 30px;
     list-style: none;
+    scrollbar-width: none;
     overflow-y: scroll;
     overflow-x: hidden;
-    scrollbar-width: thin;
     scrollbar-color: #0E1A2B transparent;
 }
 
@@ -97,11 +97,16 @@
 .TextBoxInput {
     width: 85%;
     height: 70%;
-    border-radius: 20px;
-    background-color: #2B4C7E;
+    border: none;
+    outline: none;
+    background-color: transparent;
     font-size: large;
     color: #FFFFFF;
     padding-left: 15px;
     padding-right: 15px;
-    outline: none;
+    /* resize: none;
+    text-align: left;
+    text-wrap: wrap;
+    list-style: none;
+    scrollbar-color: transparent transparent; */
 }
