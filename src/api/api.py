@@ -17,6 +17,7 @@ from folder_manipulators.folder_getter import get_folder
 from media_handlers.text.json_file_reader import read_json_file
 from llm_handlers.llm_title_generator import title_generate
 from folder_manipulators.folder_deleter import delete_folder
+from file_manipulators.file_deleter import delete_file
 
 app = Flask(__name__)
 CORS(app)
@@ -121,6 +122,30 @@ def get_chat_history():
 
     return jsonify({
         "chat-history": chat_history
+    }), 200
+
+@app.route("/delete-chat", methods=["DELETE"])
+def delete_chat():
+    content = request.get_json()
+    if not content:
+        return jsonify({"error": "Request must be in JSON format"}), 400
+            
+    if "title" not in content:
+        return jsonify({"error": "Invalid request format. Use {'title': 'youtube title'}"}), 401
+            
+    title = content["title"]
+
+    try:
+        folder_deleted = delete_folder(f"./chroma/{title}")
+        file_deleted = delete_file(f"./messages_history/{title}.json")
+        if not file_deleted and not folder_deleted:
+            return jsonify({"status": "Chat not found"}), 200
+        
+    except Exception as e:
+            return jsonify({"error": f"Deletion failed: {str(e)}"}), 402
+
+    return jsonify({
+        "status": "Chat was successfully deleted!"
     }), 200
 
 

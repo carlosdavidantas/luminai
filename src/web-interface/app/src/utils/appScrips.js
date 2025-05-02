@@ -1,4 +1,4 @@
-export const getOrPostData = async (route, method = "GET", body = null) => {
+export const getOrPostOrDeleteData = async (route, method = "GET", body = null) => {
     try {
         let url = `http://localhost:5000/${route}`;
         const options = {
@@ -30,7 +30,7 @@ export const getOrPostData = async (route, method = "GET", body = null) => {
 };
 
 export const handleLeftSideChatTitles = async (setTitles) => {
-    const data = await getOrPostData("get-titles");
+    const data = await getOrPostOrDeleteData("get-titles");
     if (data.length === 0) {
         return;
     }
@@ -42,7 +42,7 @@ export const handleChatHistory = async (setChatHistory, youtubeTitle) => {
         return;
     }
     try {
-        const data = await getOrPostData("get-chat-history", "GET", { title: youtubeTitle });
+        const data = await getOrPostOrDeleteData("get-chat-history", "GET", { title: youtubeTitle });
         if (data.length !== 0) {
             setChatHistory(data["chat-history"]);
         }
@@ -50,5 +50,10 @@ export const handleChatHistory = async (setChatHistory, youtubeTitle) => {
     } catch (error) {
         console.error("Error fetching chat history:", error);
     }
+}
 
+export const handleDeleteLeftSideChatTitles = async (title, setTitles) => {
+    const result = await getOrPostOrDeleteData("delete-chat", "DELETE", { "title": title });
+    await handleLeftSideChatTitles(setTitles);
+    console.log("Delete result:", result);
 }

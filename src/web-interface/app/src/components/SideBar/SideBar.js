@@ -1,7 +1,7 @@
 import "./sideBar.css";
 import ChatListObject from "../LeftSideTitleChatButton/LeftSideTitleChatButton.js";
 
-function SideBar({ setIsNewChat, setMessages, setYouTubeTitle, handleLeftSideChatTitles, youtubeTitle, titles, setTitles }) {
+function SideBar({ setIsNewChat, setMessages, setYouTubeTitle, handleLeftSideChatTitles, youtubeTitle, titles, setTitles, handleDeleteLeftSideChatTitles }) {
     return (
         <div className="LeftSideBackground">
             <div className="TitleAndNewChatBackground">
@@ -25,6 +25,8 @@ function SideBar({ setIsNewChat, setMessages, setYouTubeTitle, handleLeftSideCha
                             isSelected={youtubeTitle === title}
                             onSelect={() => setYouTubeTitle(title)}
                             setIsNewChat={setIsNewChat}
+                            handleDeleteLeftSideChatTitles={handleDeleteLeftSideChatTitles}
+                            setTitles={setTitles}
                         />
                     ))}
                 </ul>

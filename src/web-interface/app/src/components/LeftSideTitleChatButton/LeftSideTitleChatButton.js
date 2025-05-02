@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import "./LeftSideTitleChatButton.css";
+import { AiOutlineClose } from "react-icons/ai";
 
-function ChatListObject({ title, isSelected, onSelect, setIsNewChat }) {
+function ChatListObject({ title, isSelected, onSelect, setIsNewChat, handleDeleteLeftSideChatTitles, setTitles}) {
     const [visibleText, setVisibleText] = useState("");
 
     useEffect(() => {
@@ -26,15 +27,24 @@ function ChatListObject({ title, isSelected, onSelect, setIsNewChat }) {
     }, [title]);
 
     return (
-        <li className="ChatListObject">
+        <li className={`ChatListObject ${isSelected ? "selected" : ""}`}>
             <button
-                className={`TitleButton ${isSelected ? "clicked" : ""}`}
+                className="TitleButton"
                 onClick={() => {
                     onSelect();
                     setIsNewChat(false);
                 }}
             >
                 {visibleText}
+            </button>
+
+            <button
+                className="DeleteButton"
+                onClick={async () => {
+                    handleDeleteLeftSideChatTitles(title, setTitles);
+                }}
+            >
+                <AiOutlineClose   className="DeleteIcon" />
             </button>
         </li>
     );

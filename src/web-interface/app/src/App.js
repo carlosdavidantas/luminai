@@ -1,6 +1,6 @@
 import './styles/App.css';
 import { useState, useEffect, useRef } from 'react';
-import { handleLeftSideChatTitles, handleChatHistory } from './utils/appScrips.js';
+import { handleLeftSideChatTitles, handleChatHistory, handleDeleteLeftSideChatTitles } from './utils/appScrips.js';
 import SideBar from "./components/SideBar/SideBar.js";
 import ChatWindow from "./components/ChatWindow/ChatWindow.js";
 import ShowMediaOptionsPopup from "./components/ShowMediaOptionsPopup/ShowMediaOptionsPopup.js";
@@ -161,6 +161,7 @@ function App() {
         youtubeTitle = {youtubeTitle}
         titles = {titles}
         setTitles = {setTitles}
+        handleDeleteLeftSideChatTitles = {handleDeleteLeftSideChatTitles}
       />
       <ChatWindow 
           messages={messages}

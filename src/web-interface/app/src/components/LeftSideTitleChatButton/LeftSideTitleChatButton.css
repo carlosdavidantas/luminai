@@ -4,6 +4,17 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: transparent;
+    border-radius: 10px;
+    position: relative;
+}
+
+.ChatListObject:hover {
+    background-color: #0c1629;
+}
+
+.ChatListObject.selected {
+    background-color: #101f35;
 }
 
 .TitleButton {
@@ -12,21 +23,12 @@
     display: flex;
     justify-content: flex-start;
     align-items: center;
+    padding-left: 15px;
     background-color: transparent;
     border: none;
     font-size: small;
     color: #f9f9f9;
 }   
-
-.TitleButton:hover {
-    border-radius: 10px;
-    background-color: #0c1629;
-}
-
-.TitleButton.clicked {
-    border-radius: 10px;
-    background-color: #101f35;
-}
 
 .TitleButton span {
     display: inline-block;
@@ -52,4 +54,26 @@
     to {
         border-color: #f9f9f9;
     }
+}
+
+.DeleteButton {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+    border: none;
+    position: absolute;
+    right: 10px;
+}
+
+.ChatListObject:hover .DeleteButton {
+    display: flex;
+}
+
+.DeleteIcon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #FF6A00;
+    font-size: small;
 }
