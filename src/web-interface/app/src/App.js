@@ -5,7 +5,6 @@ import SideBar from "./components/SideBar/SideBar.js";
 import ChatWindow from "./components/ChatWindow/ChatWindow.js";
 import ShowMediaOptionsPopup from "./components/ShowMediaOptionsPopup/ShowMediaOptionsPopup.js";
 import ShowYoutubeModalPopup from "./components/ShowYoutubeModalPopup/ShowYoutubeModalPopup.js";
-import MessageBubble from './components/UserOrAIMessageBubble/UserOrAIMessageBubble.js';
 
 function App() {
   // Hooks
@@ -112,35 +111,41 @@ function App() {
     }
   };
 
-  const handleSendMessage = async (event) => {
-    if (event.key === "Enter" && currentMessage.trim() !== "") {
+  const sendMessage = async () => {
+    if(currentMessage.trim() == "")
+      return;
 
-      const newMessage = { text: currentMessage, isUser: true };
-      setMessages([...messages, newMessage]);
-      setCurrentMessage("");
-  
-      try {
-        const response = await fetch("http://localhost:5000/send-question", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ question: currentMessage, title: youtubeTitle})
-        });
-  
-        if (!response.ok) {
-          throw new Error("An error occurred while sending the question to api.");
-        }
-  
-        const data = await response.json();
-  
-        setMessages((prevMessages) => [
-          ...prevMessages,
-          { text: data.reply, isUser: false },
-        ]);
-      } catch (error) {
-        console.error("Request error", error);
+    const newMessage = { text: currentMessage, isUser: true };
+    setMessages([...messages, newMessage]);
+    setCurrentMessage("");
+
+    try {
+      const response = await fetch("http://localhost:5000/send-question", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ question: currentMessage, title: youtubeTitle})
+      });
+
+      if (!response.ok) {
+        throw new Error("An error occurred while sending the question to api.");
       }
+
+      const data = await response.json();
+
+      setMessages((prevMessages) => [
+        ...prevMessages,
+        { text: data.reply, isUser: false },
+      ]);
+    } catch (error) {
+      console.error("Request error", error);
+    }
+  }
+
+  const handleSendMessageWithEnter = async (event) => {
+    if (event.key === "Enter" && currentMessage.trim() !== "") {
+      await sendMessage();
     }
   };
 
@@ -165,7 +170,8 @@ function App() {
           toggleMidiaOptions={toggleMidiaOptions}
           currentMessage={currentMessage}
           setCurrentMessage={setCurrentMessage}
-          handleSendMessage={handleSendMessage}
+          handleSendMessageWithEnter={handleSendMessageWithEnter}
+          sendMessage={sendMessage}
       />
 
       {/* Context menu to choose media */}
