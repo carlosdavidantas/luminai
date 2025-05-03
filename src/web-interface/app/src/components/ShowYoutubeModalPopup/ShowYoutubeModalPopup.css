@@ -12,16 +12,36 @@
 }
 
 .ModalContent {
-    background-color: white;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    width: 400px;
-    text-align: center;
+    background-color: rgb(255, 255, 255);
+    width: 30%;
+    height: 20%;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.MessageContainer {
+    background-color: transparent;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: medium;
+    font-weight: bold;
+}
+
+.InputContainer {
+    background-color: transparent;
+    width: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .YouTubeInput {
-    width: 95%;
+    width: 100%;
     padding: 10px;
     margin: 10px 0;
     border: 1px solid #ccc;
@@ -31,22 +51,29 @@
 .ModalButtons {
     display: flex;
     justify-content: space-between;
+    background-color: transparent;
+    width: 90%;
     gap: 10px;
 }
 
 .ModalButtons button {
     padding: 10px 20px;
     border: none;
-    border-radius: 4px;
+    cursor: pointer;
+    font-size: small;
+    font-weight: bold;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
     cursor: pointer;
 }
 
 .ModalButtons button:first-child {
-    background-color: #007bff;
+    background-color: #0E1A2B;
     color: white;
 }
 
 .ModalButtons button:last-child {
-    background-color: #ccc;
+    background-color: #FF6A00;
     color: black;
 }

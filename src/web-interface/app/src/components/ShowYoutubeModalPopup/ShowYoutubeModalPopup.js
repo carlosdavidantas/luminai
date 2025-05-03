@@ -4,17 +4,23 @@ function ShowYoutubeModalPopup({ youtubeLink, setYouTubeLink, handleSaveYouTubeL
     return (
         <div className="ModalOverlay">
             <div className="ModalContent">
-                <h3>Add Youtube Link</h3>
-                <input
-                    type="text"
-                    className="YouTubeInput"
-                    placeholder="Insert the YouTube link here"
-                    value={youtubeLink}
-                    onChange={(e) => setYouTubeLink(e.target.value)}
-                />
+                <div className="MessageContainer">
+                    <h3>Add Youtube Link</h3>
+                </div>
+
+                <div className="InputContainer">
+                    <input
+                        type="text"
+                        className="YouTubeInput"
+                        placeholder="Insert the YouTube link here"
+                        value={youtubeLink}
+                        onChange={(e) => setYouTubeLink(e.target.value)}
+                    />
+                </div>
+
                 <div className="ModalButtons">
-                    <button onClick={handleSaveYouTubeLink}>Save</button>
                     <button onClick={handleCloseYouTubeModal}>Close</button>
+                    <button onClick={handleSaveYouTubeLink}>Save</button>
                 </div>
             </div>
         </div>
