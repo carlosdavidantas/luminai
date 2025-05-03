@@ -1,7 +1,7 @@
 import "./sideBar.css";
-import ChatListObject from "../LeftSideTitleChatButton/LeftSideTitleChatButton.js";
+import ChatTitleItem from "../LeftSideTitleChatButton/LeftSideTitleChatButton.js";
 
-function SideBar({ setIsNewChat, setMessages, setYouTubeTitle, handleLeftSideChatTitles, youtubeTitle, titles, setTitles, handleDeleteLeftSideChatTitles }) {
+function SideBar({ setIsNewChat, setMessages, setYouTubeTitle, handleLeftSideChatTitles, youtubeTitle, titles, setTitles, setIsChatBeingDeleted }) {
     return (
         <div className="LeftSideBackground">
             <div className="TitleAndNewChatBackground">
@@ -19,14 +19,14 @@ function SideBar({ setIsNewChat, setMessages, setYouTubeTitle, handleLeftSideCha
             <div className="ChatTitleListBackground">
                 <ul className="ChatList">
                     {titles && titles.map((title, index) => (
-                        <ChatListObject
+                        <ChatTitleItem
                             key={index}
                             title={title}
+                            setYouTubeTitle={setYouTubeTitle}
                             isSelected={youtubeTitle === title}
                             onSelect={() => setYouTubeTitle(title)}
                             setIsNewChat={setIsNewChat}
-                            handleDeleteLeftSideChatTitles={handleDeleteLeftSideChatTitles}
-                            setTitles={setTitles}
+                            setIsChatBeingDeleted={setIsChatBeingDeleted}
                         />
                     ))}
                 </ul>

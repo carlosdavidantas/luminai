@@ -136,13 +136,16 @@ def delete_chat():
     title = content["title"]
 
     try:
+        if title == "" or title is None:
+            return jsonify({"error": "Title cannot be empty"}), 402
+        
         folder_deleted = delete_folder(f"./chroma/{title}")
         file_deleted = delete_file(f"./messages_history/{title}.json")
         if not file_deleted and not folder_deleted:
             return jsonify({"status": "Chat not found"}), 200
         
     except Exception as e:
-            return jsonify({"error": f"Deletion failed: {str(e)}"}), 402
+            return jsonify({"error": f"Deletion failed: {str(e)}"}), 403
 
     return jsonify({
         "status": "Chat was successfully deleted!"

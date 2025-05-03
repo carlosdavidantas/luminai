@@ -5,6 +5,7 @@ import SideBar from "./components/SideBar/SideBar.js";
 import ChatWindow from "./components/ChatWindow/ChatWindow.js";
 import ShowMediaOptionsPopup from "./components/ShowMediaOptionsPopup/ShowMediaOptionsPopup.js";
 import ShowYoutubeModalPopup from "./components/ShowYoutubeModalPopup/ShowYoutubeModalPopup.js";
+import ShowDeleteConfirmationModalPopup from "./components/ShowDeleteConfirmationModalPopup/ShowDeleteConfirmationModalPopup.js";
 
 function App() {
   // Hooks
@@ -19,7 +20,8 @@ function App() {
   const [chat_history, setChatHistory] = useState([]);
   const [isNewChat, setIsNewChat] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
-  const messagesEndRef = useRef(null);
+  const messagesEndRef = useRef(null)
+  const [isChatBeingDeleted, setIsChatBeingDeleted] = useState(false);
   
   // Effects
   useEffect(() => {
@@ -162,6 +164,7 @@ function App() {
         titles = {titles}
         setTitles = {setTitles}
         handleDeleteLeftSideChatTitles = {handleDeleteLeftSideChatTitles}
+        setIsChatBeingDeleted = {setIsChatBeingDeleted}
       />
       <ChatWindow 
           messages={messages}
@@ -191,6 +194,14 @@ function App() {
           setYouTubeLink={setYouTubeLink}
           handleSaveYouTubeLink={handleSaveYouTubeLink}
           handleCloseYouTubeModal={handleCloseYouTubeModal}
+        />
+      )}
+      {isChatBeingDeleted && (
+        <ShowDeleteConfirmationModalPopup
+        handleDeleteLeftSideChatTitles={handleDeleteLeftSideChatTitles}
+        setTitles={setTitles}
+        youtubeTitle={youtubeTitle}
+        setIsChatBeingDeleted={setIsChatBeingDeleted}
         />
       )}
     </div>

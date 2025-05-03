@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./LeftSideTitleChatButton.css";
 import { AiOutlineClose } from "react-icons/ai";
 
-function ChatListObject({ title, isSelected, onSelect, setIsNewChat, handleDeleteLeftSideChatTitles, setTitles}) {
+function ChatTitleItem({title, setYouTubeTitle, isSelected, onSelect, setIsNewChat, setIsChatBeingDeleted }) {
     const [visibleText, setVisibleText] = useState("");
 
     useEffect(() => {
@@ -40,8 +40,13 @@ function ChatListObject({ title, isSelected, onSelect, setIsNewChat, handleDelet
 
             <button
                 className="DeleteButton"
-                onClick={async () => {
-                    handleDeleteLeftSideChatTitles(title, setTitles);
+                onClick={(event) => {
+                    const button = event.target;
+                    const parent = button.closest("li");
+                    const parentTitle = parent?.querySelector(".TitleButton")?.textContent;
+
+                    setYouTubeTitle(`${parentTitle}`);
+                    setIsChatBeingDeleted(true);
                 }}
             >
                 <AiOutlineClose   className="DeleteIcon" />
@@ -50,4 +55,4 @@ function ChatListObject({ title, isSelected, onSelect, setIsNewChat, handleDelet
     );
 }
 
-export default ChatListObject;
+export default ChatTitleItem;
