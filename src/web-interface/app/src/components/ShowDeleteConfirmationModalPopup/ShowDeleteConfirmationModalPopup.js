@@ -1,6 +1,6 @@
 import "./ShowDeleteConfirmationModalPopup.css";
 
-function ShowDeleteConfirmationModalPopup({ handleDeleteLeftSideChatTitles, setTitles, youtubeTitle, setIsChatBeingDeleted,  }) {
+function ShowDeleteConfirmationModalPopup({ handleDeleteLeftSideChatTitles, setTitles, youtubeTitle, setIsChatBeingDeleted, setIsNewChat, setMessages, setYouTubeTitle }) {
     return (
         <div className="modalOverlay">
             <div className="modalBackground">
@@ -21,6 +21,9 @@ function ShowDeleteConfirmationModalPopup({ handleDeleteLeftSideChatTitles, setT
                             console.log("Deleting chat with title:", youtubeTitle);
                             await handleDeleteLeftSideChatTitles(youtubeTitle, setTitles);
                             setIsChatBeingDeleted(false)
+                            setIsNewChat(true);
+                            setMessages([]);
+                            setYouTubeTitle("");
                         }}
                     >
                         Confirm

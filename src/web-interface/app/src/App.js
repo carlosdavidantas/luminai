@@ -202,6 +202,9 @@ function App() {
         setTitles={setTitles}
         youtubeTitle={youtubeTitle}
         setIsChatBeingDeleted={setIsChatBeingDeleted}
+        setIsNewChat={setIsNewChat}
+        setMessages={setMessages}
+        setYouTubeTitle={setYouTubeTitle}
         />
       )}
     </div>
