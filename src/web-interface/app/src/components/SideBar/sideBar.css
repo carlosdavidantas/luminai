@@ -1,68 +1,121 @@
 .LeftSideBackground {
-    margin: 0;
-    background-color: transparent;
-    width: 15%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .TitleAndNewChatBackground {
-    margin: 0;
-    background-color: transparent;
-    width: 100%;
-    height: 15%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
-  }
-  
-  .Title {
-    margin: 0;
-    width: 100%;
-    height: 5%;
-    color: #FFFFFF;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .NewChatButton {
-    margin: 0;
-    width: 80%;
-    height: 40px;
-    background-color: #FF6A00;
-    color: #FFFFFF;
-    border-radius: 10px;
-    font-size: medium;
-  }
-  
-  .ChatTitleListBackground {
-    background-color: transparent;
-    height: 84%;
-    width: 80%;
-    display: flex;
-    align-items: flex-end;
-  }
-  
-  .ChatList {
-    background-color: transparent;
-    padding: 0;
-    margin: 0;
-    width: 100%;
-    height: 95%;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    list-style: none;
-    overflow-y: scroll;
-    overflow-x: hidden;
-    scrollbar-width: none;
-    scrollbar-color: #0E1A2B transparent;
-  }
+  margin: 0;
+  background-color: transparent;
+  width: 15%;
+  min-width: 15%; /* largura mínima quando expandida */
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  transition: width 0.1s;
+}
 
-  .ChatList::-webkit-scrollbar {
-    display: none;
-  }
+.LeftSideBackground.collapsed {
+  width: 50px !important;
+  min-width: 50px !important;
+  transition: width 0.5s;
+  overflow: hidden;
+  padding: 0;
+}
+
+.SidebarToggleButton {
+  margin: 0;
+  width: 35px;
+  height: 35px;
+  background-color: transparent;
+  border: none;
+  color: #FF6A00;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 18px;
+  right: 5px;
+}
+
+.SidebarToggleButton:hover {
+  background-color: rgba(255, 106, 0, 0.1);
+  cursor: pointer;
+}
+
+.SidebarToggleButtonIcon {
+  margin: 0;
+  width: 40px;
+  height: 40px;
+  color: #FF6A00;
+}
+
+.HideOnCollapse {
+  background-color: transparent;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.HideOnCollapse.hidden {
+  display: none !important;
+}
+
+.TitleAndNewChatBackground {
+  margin: 0;
+  background-color: transparent;
+  width: 100%;
+  height: 15%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.Title {
+  margin: 0;
+  width: 100%;
+  height: 5%;
+  color: #FFFFFF;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.NewChatButton {
+  margin: 0;
+  width: 80%;
+  height: 40px;
+  background-color: #FF6A00;
+  color: #FFFFFF;
+  border-radius: 10px;
+  font-size: medium;
+}
+
+.ChatTitleListBackground {
+  background-color: transparent;
+  height: 84%;
+  width: 80%;
+  display: flex;
+  align-items: flex-end;
+}
+
+.ChatList {
+  background-color: transparent;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  height: 95%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  list-style: none;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  scrollbar-width: none;
+  scrollbar-color: #0E1A2B transparent;
+}
+
+.ChatList::-webkit-scrollbar {
+  display: none;
+}

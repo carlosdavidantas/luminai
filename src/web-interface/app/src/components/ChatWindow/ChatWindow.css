@@ -1,9 +1,10 @@
 .ChatBackground {
     margin: 0;
-    width: 85%;
+    flex-grow: 1;
     height: 99%;
     background-color: #0E1A2B;
     border-bottom-left-radius: 5px;
+    /* transition: width 0.1s; */
 }
 
 .MessagesBackground {
