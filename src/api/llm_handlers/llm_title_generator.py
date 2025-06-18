@@ -12,6 +12,7 @@ def title_generate(splitted_texts, title):
     You are a creative assistant specialized in generating short titles for chatbots.
     Based on the provided context and content name, create a phrase or title with a maximum of 27 characters (including spaces).
     The title must be relevant, clear, direct, and aligned with the theme.
+    The title should not include any emojis or special characters, and it should not end with a period or any other punctuation mark.
 
     Important rules:
     - The content name may include emojis and special characters, but you MUST NOT include them in the title you create.
