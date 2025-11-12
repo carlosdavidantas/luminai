@@ -92,12 +92,12 @@ To start a new chat, click **“New Chat”**, the screen will reset and you can
 ![NewChat](./docs/assets/newChat.jpg)
 
 To **delete a chat**, hover over it and click the **delete button** that appears:
-![DelteChat](./docs/assets/deleteChat.jpg)
+![DeleteChat](./docs/assets/deleteChat.jpg)
 
 You can also **toggle the sidebar** to show or hide your chat history:
-![SideBar](./docs/assets/sideBarButton.jpg)
+![SideBar](./docs/assets/sidebarButton.jpg)
 
-![SideBar](./docs/assets/sideBarClosed.jpg)
+![SideBarClosed](./docs/assets/sidebarClosed.jpg)
 
 ## Tecnologies
 - React.js
