@@ -3,9 +3,9 @@ import { useState, useEffect, useRef } from 'react';
 import { handleLeftSideChatTitles, handleChatHistory, handleDeleteLeftSideChatTitles } from './utils/appScrips.js';
 import SideBar from "./components/SideBar/SideBar.js";
 import ChatWindow from "./components/ChatWindow/ChatWindow.js";
-import ShowMediaOptionsPopup from "./components/ShowMediaOptionsPopup/ShowMediaOptionsPopup.js";
-import ShowYoutubeModalPopup from "./components/ShowYoutubeModalPopup/ShowYoutubeModalPopup.js";
-import ShowDeleteConfirmationModalPopup from "./components/ShowDeleteConfirmationModalPopup/ShowDeleteConfirmationModalPopup.js";
+import ChatMediaOptionsModal from "./components/ChatMediaOptionsModal/ChatMediaOptionsModal.js";
+import ShowYoutubeModalPopup from "./components/YoutubeLinkModal/YoutubeLinkModal.js";
+import DeleteChatConfirmationModal from "./components/DeleteChatConfirmationModal/DeleteChatConfirmationModal.js";
 
 function App() {
   // Hooks
@@ -180,7 +180,7 @@ function App() {
 
       {/* Context menu to choose media */}
       {showOptions && (
-        <ShowMediaOptionsPopup
+        <ChatMediaOptionsModal
           menuPosition={menuPosition}
           handleAddYouTubeLink={handleAddYouTubeLink}
           setShowOptions={setShowOptions}
@@ -197,7 +197,7 @@ function App() {
         />
       )}
       {isChatBeingDeleted && (
-        <ShowDeleteConfirmationModalPopup
+        <DeleteChatConfirmationModal
         handleDeleteLeftSideChatTitles={handleDeleteLeftSideChatTitles}
         setTitles={setTitles}
         youtubeTitle={youtubeTitle}

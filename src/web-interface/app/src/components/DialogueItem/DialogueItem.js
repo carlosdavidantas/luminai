@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
-import "./LeftSideTitleChatButton.css";
 import { AiOutlineClose } from "react-icons/ai";
+import "./DialogueItem.css";
 
-function ChatTitleItem({title, setYouTubeTitle, isSelected, onSelect, setIsNewChat, setIsChatBeingDeleted }) {
+export default function DialogueItem({title, setYouTubeTitle, isSelected, onSelect, setIsNewChat, setIsChatBeingDeleted }) {
     const [visibleText, setVisibleText] = useState("");
 
     useEffect(() => {
@@ -54,5 +54,3 @@ function ChatTitleItem({title, setYouTubeTitle, isSelected, onSelect, setIsNewCh
         </li>
     );
 }
-
-export default ChatTitleItem;

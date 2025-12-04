@@ -1,12 +1,9 @@
-import React from "react";
-import "./UserOrAIMessageBubble.css";
+import "./ChatMessageBubble.css";
 
-function MessageBubble({ text, isUser }) {
+export default function ChatMessageBubble({ text, isUser }) {
     return (
         <li className={`MessageBubble ${isUser ? "UserMessage" : "LLMMessage"}`}>
             { text }
         </li>
     );
 }
-
-export default MessageBubble;

@@ -1,16 +1,16 @@
-import "./ChatWindow.css";
 import { VscAdd } from "react-icons/vsc";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import { IoSend } from "react-icons/io5";
-import MessageBubble from "../UserOrAIMessageBubble/UserOrAIMessageBubble.js";
+import ChatMessageBubble from "../ChatMessageBubble/ChatMessageBubble.js";
+import "./ChatWindow.css";
 
-function ChatWindow({ messages, isLoading, messagesEndRef, isNewChat, toggleMidiaOptions, currentMessage, setCurrentMessage, handleSendMessageWithEnter, sendMessage }) {
+export default function ChatWindow({ messages, isLoading, messagesEndRef, isNewChat, toggleMidiaOptions, currentMessage, setCurrentMessage, handleSendMessageWithEnter, sendMessage }) {
     return (
         <div className="ChatBackground">
             <div className="MessagesBackground">
                 <ul className="MessagesList">
                     {messages.map((message, index) => (
-                        <MessageBubble
+                        <ChatMessageBubble
                             key={index}
                             text={message.text}
                             isUser={message.isUser}
@@ -49,5 +49,3 @@ function ChatWindow({ messages, isLoading, messagesEndRef, isNewChat, toggleMidi
         </div>
     );
 }
-
-export default ChatWindow;

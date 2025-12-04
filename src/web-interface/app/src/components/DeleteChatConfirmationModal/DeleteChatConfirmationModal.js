@@ -1,6 +1,6 @@
-import "./ShowDeleteConfirmationModalPopup.css";
+import "./DeleteChatConfirmationModal.css";
 
-function ShowDeleteConfirmationModalPopup({ handleDeleteLeftSideChatTitles, setTitles, youtubeTitle, setIsChatBeingDeleted, setIsNewChat, setMessages, setYouTubeTitle }) {
+export default function DeleteChatConfirmationModal({ handleDeleteLeftSideChatTitles, setTitles, youtubeTitle, setIsChatBeingDeleted, setIsNewChat, setMessages, setYouTubeTitle }) {
     return (
         <div className="modalOverlay">
             <div className="modalBackground">
@@ -33,5 +33,3 @@ function ShowDeleteConfirmationModalPopup({ handleDeleteLeftSideChatTitles, setT
         </div>
     );
 }
-
-export default ShowDeleteConfirmationModalPopup;

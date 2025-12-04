@@ -1,6 +1,6 @@
-import "./ShowMediaOptionsPopup.css";
+import "./ChatMediaOptionsModal.css";
 
-function showMediaOptionsPopup({ menuPosition, handleAddYouTubeLink, setShowOptions }) {
+export default function ChatMediaOptionsModal({ menuPosition, handleAddYouTubeLink, setShowOptions }) {
     return (
         <div
             className="ContextMenu"
@@ -13,5 +13,3 @@ function showMediaOptionsPopup({ menuPosition, handleAddYouTubeLink, setShowOpti
         </div>
     );
 }
-
-export default showMediaOptionsPopup;

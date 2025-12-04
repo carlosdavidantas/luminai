@@ -1,6 +1,6 @@
-import "./ShowYoutubeModalPopup.css";
+import "./YoutubeLinkModal.css";
 
-function ShowYoutubeModalPopup({ youtubeLink, setYouTubeLink, handleSaveYouTubeLink, handleCloseYouTubeModal }) {
+export default function YoutubeLinkModal({ youtubeLink, setYouTubeLink, handleSaveYouTubeLink, handleCloseYouTubeModal }) {
     return (
         <div className="ModalOverlay">
             <div className="ModalContent">
@@ -27,4 +27,3 @@ function ShowYoutubeModalPopup({ youtubeLink, setYouTubeLink, handleSaveYouTubeL
     );
 }
 
-export default ShowYoutubeModalPopup;

@@ -1,8 +1,8 @@
-import "./sideBar.css";
-import ChatTitleItem from "../LeftSideTitleChatButton/LeftSideTitleChatButton.js";
+import { useState } from "react";
 import { TbLayoutSidebarLeftCollapse } from "react-icons/tb";
 import { TbLayoutSidebarLeftExpand } from "react-icons/tb";
-import { useState } from "react";
+import "./sideBar.css";
+import DialogueItem from "../DialogueItem/DialogueItem.js";
 
 function SideBar({ setIsNewChat, setMessages, setYouTubeTitle, handleLeftSideChatTitles, youtubeTitle, titles, setTitles, setIsChatBeingDeleted }) {
     const [collapsed, setCollapsed] = useState(false);
@@ -33,7 +33,7 @@ function SideBar({ setIsNewChat, setMessages, setYouTubeTitle, handleLeftSideCha
                 <div className="ChatTitleListBackground">
                     <ul className="ChatList">
                         {titles && titles.map((title, index) => (
-                            <ChatTitleItem
+                            <DialogueItem
                                 key={index}
                                 title={title}
                                 setYouTubeTitle={setYouTubeTitle}
