@@ -9,16 +9,15 @@
 }
 
 .ContextMenu button {
-  padding: 8px 12px;
-  border: none;
-  background-color: #f9f9f9;
-  color: #333;
-  border-radius: 4px;
-  cursor: pointer;
-  text-align: left;
+    padding: 8px 12px;
+    border: none;
+    background-color: #f9f9f9;
+    color: #333;
+    border-radius: 4px;
+    cursor: pointer;
+    text-align: left;
 }
 
 .ContextMenu button:hover {
-  background-color: #e6e6e6;
+    background-color: #e6e6e6;
 }
-

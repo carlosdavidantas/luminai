@@ -1,0 +1,314 @@
+@media (min-width: 344px) {
+    .LeftSideBackground {
+        position: absolute;
+        width: 100vw;
+        background-color: #0A121F;
+        left: 0px;
+        transition: width 0.5s;
+    }
+
+    .LeftSideBackground.collapsed {
+        background-color: transparent;
+        transition: width 0.1s;
+    }
+
+
+    .ChatBackground {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .MessagesBackground {
+        width: 100%;
+    }
+
+    .MessagesList {
+        width: 70%;
+    }
+
+    .TextBoxBackground {
+        width: 70%;
+    }
+
+    .TextBoxInput {
+        font-size: small;
+        padding-left: 10px;
+        width: 65%;
+    }
+
+}
+
+@media (min-width: 576px) {
+    .LeftSideBackground {
+        width: 150%;
+        position: relative;
+    }
+
+    .SidebarToggleButton {
+        top: 23px;
+    }
+
+    .MessagesList {
+        width: 90%;
+    }
+
+    .TextBoxBackground {
+        width: 90%;
+        height: 50%;
+    }
+
+    .TextBoxInput {
+        font-size: small;
+        padding-left: 10px;
+        width: 80%;
+    }
+}
+
+@media (min-width: 577px) {
+    .LeftSideBackground {
+        position: relative;
+        width: 150%;
+    }
+
+    .SidebarToggleButton {
+        top: 23px;
+    }
+
+    .MessagesList {
+        width: 80%;
+    }
+
+    .TextBoxBackground {
+        width: 80%;
+        height: 60%;
+    }
+
+    .TextBoxInput {
+        font-size: small;
+        width: 85%;
+    }
+}
+
+@media (min-width: 768px) {
+    .LeftSideBackground {
+        width: 40%;
+    }
+
+    .SidebarToggleButton {
+        top: 23px;
+    }
+
+    .MessagesList {
+        width: 80%;
+    }
+
+    .TextBoxBackground {
+        width: 80%;
+        height: 60%;
+    }
+
+    .TextBoxInput {
+        font-size: small;
+        width: 85%;
+    }
+}
+
+@media (min-width: 992px) {
+    .LeftSideBackground {
+        width: 40%;
+    }
+
+    .SidebarToggleButton {
+        top: 23px;
+    }
+
+    .MessagesList {
+        width: 80%;
+    }
+
+    .TextBoxBackground {
+        width: 80%;
+        height: 60%;
+    }
+}
+
+@media (min-width: 1080px) {
+    .LeftSideBackground {
+        width: 30%;
+    }
+
+    .SidebarToggleButton {
+        top: 23px;
+    }
+
+    .MessagesList {
+        width: 80%;
+    }
+
+    .TextBoxBackground {
+        width: 80%;
+        height: 60%;
+    }
+}
+
+@media (min-width: 1200px) {
+    .LeftSideBackground {
+        width: 25%;
+    }
+
+    .SidebarToggleButton {
+        top: 20px;
+    }
+
+    h1 {
+        font-size: x-large;
+    }
+
+    .SidebarToggleButtonIcon {
+        width: 18px;
+        height: 18px;
+    }
+
+    .NewChatButton {
+        font-size: small;
+        height: 30%;
+    }
+
+    .TitleButton {
+        font-size: small;
+    }
+
+    .DeleteIcon {
+        font-size: small;
+    }
+
+    .MessagesList {
+        width: 70%;
+    }
+
+    .MessageBubble {
+        font-size: small;
+    }
+
+    .TextBoxBackground {
+        width: 70%;
+        height: 60%;
+    }
+
+    .TextBoxInput {
+        font-size: small;
+        width: 90%;
+    }
+
+    .SendMessageButton {
+        width: 25px;
+        height: 25px;
+    }
+}
+
+@media (min-width: 1700px) {
+    .LeftSideBackground {
+        transition: width 0.5s;
+    }
+
+    .LeftSideBackground.collapsed {
+        transition: width 0.1s;
+    }
+
+    .SidebarToggleButton {
+        top: 18px;
+    }
+
+    .SidebarToggleButtonIcon {
+        width: 20px;
+        height: 20px;
+    }
+
+    h1 {
+        font-size: xx-large;
+    }
+
+    .NewChatButton {
+        font-size: medium;
+        height: 30%;
+    }
+
+    .TitleButton {
+        font-size: medium;
+    }
+
+    .DeleteIcon {
+        font-size: medium;
+    }
+
+    .MessageBubble {
+        font-size: medium;
+    }
+
+    .TextBoxBackground {
+        height: 60%;
+    }
+
+    .TextBoxInput {
+        font-size: medium;
+        width: 92%;
+    }
+
+    .SendMessageButton {
+        width: 25px;
+        height: 25px;
+    }
+}
+
+@media (min-width: 768px) and (min-height: 1024px) {
+    .LeftSideBackground {
+        width: 100%;
+    }
+
+    .MessagesList {
+        min-width: 500px;
+    }
+}
+
+@media (min-width: 1700px) and (min-height: 1024px) {
+    .LeftSideBackground {
+        width: 25%;
+    }
+}
+
+
+/* Nest Hub */
+@media (width: 1024px) and (height: 600px) {
+    .App {
+        width: 100vw;
+        height: 100vh;
+    }
+
+    .LeftSideBackground {
+        width: 70%;
+    }
+
+    .TitleAndNewChatBackground {
+        height: 30%;
+    }
+
+    .SidebarToggleButton {
+        top: 18px;
+    }
+
+    .TextBoxBackground {
+        height: 80%;
+    }
+
+    .TextBoxInput {
+        font-size: medium;
+        width: 90%;
+    }
+
+    .SendMessageButton {
+        width: 25px;
+        height: 25px;
+    }
+}

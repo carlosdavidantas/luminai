@@ -4,11 +4,11 @@
     padding: 10px 15px;
     border-radius: 15px;
     margin: 5px 0;
-    max-width: 70%; 
+    max-width: 90%; 
     word-wrap: break-word;
     font-size: 16px;
     font-weight:500;
-    line-height: 1.4;
+    line-height: 1.5;
 }
 
 .UserMessage {

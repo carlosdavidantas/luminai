@@ -1,6 +1,7 @@
-import './styles/App.css';
-import { useState, useEffect, useRef } from 'react';
-import { handleLeftSideChatTitles, handleChatHistory, handleDeleteLeftSideChatTitles } from './utils/appScrips.js';
+import "./styles/App.css";
+import "./styles/MediaQuery.css";
+import { useState, useEffect, useRef } from "react";
+import { handleLeftSideChatTitles, handleChatHistory, handleDeleteLeftSideChatTitles } from "./utils/appScrips.js";
 import SideBar from "./components/SideBar/SideBar.js";
 import ChatWindow from "./components/ChatWindow/ChatWindow.js";
 import ChatMediaOptionsModal from "./components/ChatMediaOptionsModal/ChatMediaOptionsModal.js";
@@ -114,7 +115,7 @@ function App() {
   };
 
   const sendMessage = async () => {
-    if(currentMessage.trim() == "")
+    if(currentMessage.trim() === "")
       return;
 
     const newMessage = { text: currentMessage, isUser: true };
