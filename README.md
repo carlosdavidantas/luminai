@@ -44,6 +44,11 @@ source .venv/bin/activate  # Linux
 pip install -r requirements.txt # Windows
 pip3 install -r requirements.txt # Linux
 
+# Create a .env file
+HUGGINGFACE_API_KEY=your-key-here
+GOOGLE_API_KEY=your-key-here
+LANGCHAIN_API_KEY=your-key-here
+
 # Run the API
 python api.py  # Windows
 python3 api.py # Linux
