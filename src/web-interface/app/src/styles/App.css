@@ -1,11 +1,11 @@
 .App {
-  margin: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: #0A121F;
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
+    margin: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #0A121F;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
 }
 
 .ContextMenu button {
@@ -20,4 +20,11 @@
 
 .ContextMenu button:hover {
     background-color: #e6e6e6;
+}
+
+@media (width: 1024px) and (height: 600px) {
+    .App {
+        width: 100vw;
+        height: 100vh;
+    }
 }

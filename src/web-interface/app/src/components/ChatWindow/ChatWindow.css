@@ -131,3 +131,163 @@
     font-size: 24px;
     background-color: transparent;
 }
+
+/* Media query */
+
+@media (max-width: 344px) {
+    .ChatBackground {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .MessagesBackground {
+        width: 100%;
+    }
+
+    .MessagesList {
+        width: 70%;
+    }
+
+    .TextBoxBackground {
+        width: 70%;
+    }
+
+    .TextBoxInput {
+        font-size: small;
+        padding-left: 10px;
+        width: 65%;
+    }
+
+}
+
+@media (min-width: 344px) {
+    .ChatBackground {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .MessagesBackground {
+        width: 100%;
+    }
+
+    .MessagesList {
+        width: 70%;
+    }
+
+    .TextBoxBackground {
+        width: 70%;
+    }
+
+    .TextBoxInput {
+        font-size: small;
+        padding-left: 10px;
+        width: 65%;
+    }
+
+}
+
+@media (min-width: 768px) {
+    .MessagesList {
+        width: 80%;
+    }
+
+    .TextBoxBackground {
+        width: 80%;
+        height: 60%;
+    }
+
+    .TextBoxInput {
+        font-size: small;
+        width: 85%;
+    }
+}
+
+@media (min-width: 992px) {
+    .MessagesList {
+        width: 80%;
+    }
+
+    .TextBoxBackground {
+        width: 80%;
+        height: 60%;
+    }
+}
+
+@media (min-width: 1080px) {
+    .MessagesList {
+        width: 80%;
+    }
+
+    .TextBoxBackground {
+        width: 80%;
+        height: 60%;
+    }
+}
+
+@media (min-width: 1200px) {
+    .MessagesList {
+        width: 70%;
+    }
+
+    .TextBoxBackground {
+        width: 70%;
+        height: 60%;
+    }
+
+    .TextBoxInput {
+        font-size: small;
+        width: 90%;
+    }
+
+    .SendMessageButton {
+        width: 25px;
+        height: 25px;
+    }
+}
+
+@media (min-width: 1700px) {
+    .TextBoxBackground {
+        height: 60%;
+    }
+
+    .TextBoxBackground {
+        width: 70%;
+    }
+
+    .TextBoxInput {
+        font-size: medium;
+        width: 90%;
+    }
+
+    .SendMessageButton {
+        width: 25px;
+        height: 25px;
+    }
+}
+
+@media (min-width: 768px) and (min-height: 1024px) {
+    .MessagesList {
+        min-width: 500px;
+    }
+}
+
+/* Nest Hub */
+@media (width: 1024px) and (height: 600px) {
+    .TextBoxBackground {
+        height: 80%;
+    }
+
+    .TextBoxInput {
+        font-size: medium;
+        width: 90%;
+    }
+
+    .SendMessageButton {
+        width: 25px;
+        height: 25px;
+    }
+}

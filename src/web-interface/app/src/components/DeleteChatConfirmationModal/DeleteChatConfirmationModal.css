@@ -35,7 +35,7 @@
 .buttonContainer {
     background-color: transparent;
     width: 100%;
-    height: 30%;
+    height: 20%;
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -61,4 +61,48 @@
     cursor: pointer;
     font-size: small;
     font-weight: bold;
+}
+
+/* Media query */
+
+@media (max-width: 344px) {
+    .modalBackground {
+        width: 90%;
+    }
+}
+
+@media (min-width: 344px) {
+    .modalBackground {
+        width: 90%;
+        height: 20%;
+    }
+}
+
+@media (min-width: 768px) {
+    .modalBackground {
+        width: 60%;
+        height: 20%;
+    }
+}
+
+@media (min-width: 1200px) {
+    .modalBackground {
+        width: 60%;
+        height: 20%;
+    }
+}
+
+@media (min-width: 1700px) {
+    .modalBackground {
+        width: 30%;
+        height: 20%
+    }
+}
+
+/* Nest Hub */
+@media (width: 1024px) and (height: 600px) {
+    .modalBackground {
+        width: 60%;
+        height: 40%;
+    }
 }

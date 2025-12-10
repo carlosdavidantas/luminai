@@ -24,3 +24,17 @@
     border-bottom-left-radius: 3px;
     margin: 2px;
 }
+
+/* Media query */
+
+@media (min-width: 1200px) {
+    .MessageBubble {
+        font-size: small;
+    }
+}
+
+@media (min-width: 1700px) {
+    .MessageBubble {
+        font-size: medium;
+    }
+}

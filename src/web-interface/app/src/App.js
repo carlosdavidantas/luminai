@@ -1,5 +1,4 @@
 import "./styles/App.css";
-import "./styles/MediaQuery.css";
 import { useState, useEffect, useRef } from "react";
 import { handleLeftSideChatTitles, handleChatHistory, handleDeleteLeftSideChatTitles } from "./utils/appScrips.js";
 import SideBar from "./components/SideBar/SideBar.js";

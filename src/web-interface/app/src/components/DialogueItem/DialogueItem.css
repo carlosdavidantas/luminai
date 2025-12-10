@@ -77,3 +77,25 @@
     color: #FF6A00;
     font-size: small;
 }
+
+/* Media query */
+
+@media (min-width: 1200px) {
+    .TitleButton {
+        font-size: small;
+    }
+
+    .DeleteIcon {
+        font-size: small;
+    }
+}
+
+@media (min-width: 1700px) {
+    .TitleButton {
+        font-size: medium;
+    }
+
+    .DeleteIcon {
+        font-size: medium;
+    }
+}

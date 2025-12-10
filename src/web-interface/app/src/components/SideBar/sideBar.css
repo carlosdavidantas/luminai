@@ -119,3 +119,139 @@
 .ChatList::-webkit-scrollbar {
   display: none;
 }
+
+/* Media query */
+
+@media (max-width: 344px) {
+    .LeftSideBackground {
+        position: absolute !important;
+        width: 100vw !important;
+        background-color: #0A121F !important;
+        left: 0px !important;
+        transition: width 0.5s !important;
+    }
+
+    .LeftSideBackground.collapsed {
+        background-color: transparent !important;
+        transition: width 0.1s !important;
+    }
+}
+
+@media (min-width: 344px) {
+    .LeftSideBackground {
+        position: absolute !important;
+        width: 100vw !important;
+        background-color: #0A121F !important;
+        left: 0px !important;
+        transition: width 0.5s !important;
+    }
+
+    .LeftSideBackground.collapsed {
+        background-color: transparent !important;
+        transition: width 0.1s !important;
+    }
+}
+
+
+@media (min-width: 768px) {
+    .LeftSideBackground {
+        width: 40% !important;
+        position: relative !important;
+    }
+
+    .SidebarToggleButton {
+        top: 23px !important;
+    }
+}
+
+@media (min-width: 992px) {
+    .LeftSideBackground {
+        width: 40% !important;
+    }
+
+    .SidebarToggleButton {
+        top: 23px !important;
+    }
+}
+
+@media (min-width: 1080px) {
+    .LeftSideBackground {
+        width: 30% !important;
+    }
+
+    .SidebarToggleButton {
+        top: 23px !important;
+    }
+}
+
+@media (min-width: 1200px) {
+    .LeftSideBackground {
+        width: 25% !important;
+    }
+
+    .SidebarToggleButton {
+        top: 20px !important;
+    }
+
+    .SidebarToggleButtonIcon {
+        width: 18px !important;
+        height: 18px !important;
+    }
+
+    .NewChatButton {
+        font-size: small !important;
+        height: 30% !important;
+    }
+}
+
+@media (min-width: 1700px) {
+    .LeftSideBackground {
+        transition: width 0.5s !important;
+    }
+
+    .LeftSideBackground.collapsed {
+        transition: width 0.1s !important;
+    }
+
+    .SidebarToggleButton {
+        top: 18px !important;
+    }
+
+    .SidebarToggleButtonIcon {
+        width: 20px !important;
+        height: 20px !important;
+    }
+
+    .NewChatButton {
+        font-size: medium !important;
+        height: 30% !important;
+    }
+}
+
+@media (min-width: 768px) and (min-height: 1024px) {
+    .LeftSideBackground {
+        width: 100% !important;
+    }
+}
+
+@media (min-width: 1700px) and (min-height: 1024px) {
+    .LeftSideBackground {
+        width: 25% !important;
+    }
+}
+
+
+/* Nest Hub */
+@media (width: 1024px) and (height: 600px) {
+    .LeftSideBackground {
+        width: 70% !important;
+    }
+
+    .TitleAndNewChatBackground {
+        height: 30% !important;
+    }
+
+    .SidebarToggleButton {
+        top: 18px !important;
+    }
+}
