@@ -10,7 +10,7 @@ def transcribe(audio_path):
 
     model = AutoModelForSpeechSeq2Seq.from_pretrained(
         model_id,
-        torch_dtype=torch_dtype,
+        dtype=torch_dtype,
         low_cpu_mem_usage=True,
         use_safetensors=True,
     )
@@ -23,7 +23,7 @@ def transcribe(audio_path):
         model=model,
         tokenizer=processor.tokenizer,
         feature_extractor=processor.feature_extractor,
-        torch_dtype=torch_dtype,
+        dtype=torch_dtype,
         device=device,
         return_timestamps=True
     )
@@ -31,6 +31,7 @@ def transcribe(audio_path):
     print("Transcribing audio...")
 
     result = pipe(audio_path)
+    print("\nTranscription result: " + result["text"] + "\n")
     
     finish_time = time.perf_counter()
     time_taken = finish_time - start_time

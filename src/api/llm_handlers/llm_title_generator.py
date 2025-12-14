@@ -1,11 +1,12 @@
 from llm_handlers.llm_model import get_model
-from langchain.prompts import PromptTemplate
-from langchain.prompts.chat import ChatPromptTemplate, HumanMessagePromptTemplate
+from langchain_core.prompts import PromptTemplate
+from langchain_core.prompts.chat import ChatPromptTemplate, HumanMessagePromptTemplate
 from typing_extensions import List, TypedDict
 from langgraph.graph import START, StateGraph
 
 
 def title_generate(splitted_texts, title):
+    print("\nGenerating title...\n")
     llm = get_model()
 
     custom_prompt_template = """
@@ -29,8 +30,10 @@ def title_generate(splitted_texts, title):
         input_variables=["context", "content_name"],
         template=custom_prompt_template,
     )
+    print("\nPrompt Template Created.\n")
 
     prompt = ChatPromptTemplate.from_messages([HumanMessagePromptTemplate(prompt=prompt_template)])
+    print("\nChat Prompt Template Created.\n")
 
     class State(TypedDict):
         context: List[str]
@@ -51,7 +54,10 @@ def title_generate(splitted_texts, title):
     graph_builder = StateGraph(State).add_sequence([retrieve, generate])
     graph_builder.add_edge(START, "retrieve")
     graph = graph_builder.compile()
+    print("\nState Graph Compiled.\n")
 
 
     result = graph.invoke({f"content_name": title})
+    print("\nresult: " , result , "\n")
+    print("\nTitle generation completed.\n")
     return result["title"].content

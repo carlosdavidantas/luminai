@@ -1,5 +1,5 @@
-from langchain.prompts import PromptTemplate
-from langchain.prompts.chat import ChatPromptTemplate, HumanMessagePromptTemplate
+from langchain_core.prompts import PromptTemplate
+from langchain_core.prompts.chat import ChatPromptTemplate, HumanMessagePromptTemplate
 from langgraph.graph import START, StateGraph
 from langchain_community.chat_message_histories import FileChatMessageHistory
 from typing_extensions import List, TypedDict
