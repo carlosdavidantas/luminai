@@ -22,6 +22,7 @@ The workflow is simple:
 #### Pre-required:
 - **[Node.js](https://nodejs.org/)** and npm
 - **[Python](https://www.python.org/)** and pip
+- **[FFMPEG](https://www.ffmpeg.org/)** for audio
 
 ### Backend Setup (API)
 
