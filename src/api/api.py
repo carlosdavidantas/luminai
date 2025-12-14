@@ -50,15 +50,11 @@ def download_and_load_content_from_youtube():
             content_array = download_audio(url)
             path = content_array[0]
             title = content_array[1]
-            
             audio_transcription = transcribe(path)
             splitted_texts = split(audio_transcription)
-
             new_title = title_generate(splitted_texts, title)
             stripped_title = new_title.strip()
-
             create_vector_store(splitted_texts, stripped_title)
-
             delete_folder("./cache")
 
             return jsonify({

@@ -13,5 +13,5 @@ def download_audio(url):
     base, ext = os.path.splitext(audio_destination)
     audio = base + ".mp3"
     os.rename(audio_destination, audio)
-    print(youtube.title + " has been successfully downloaded!")
+    print("\n" + youtube.title + " has been successfully downloaded! \n")
     return [audio, youtube.title]

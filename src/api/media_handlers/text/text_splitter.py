@@ -13,6 +13,7 @@ MARKDOWN_SEPARATORS = [
 ]
 
 def split(text):
+    print("\nSplitting text into chunks...\n")
     split_pattern = RecursiveCharacterTextSplitter(
         chunk_size=500,
         chunk_overlap=100,
@@ -21,4 +22,5 @@ def split(text):
     )
 
     all_splits = split_pattern.split_text(text)
+    print(f"\nSplitted result: {all_splits}\n")
     return all_splits
