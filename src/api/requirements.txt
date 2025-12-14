@@ -2,6 +2,7 @@ python-dotenv
 pytubefix
 torch
 transformers
+sentence-transformers
 accelerate
 langchain-text-splitters
 langchain
